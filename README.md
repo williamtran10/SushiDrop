@@ -1,7 +1,7 @@
 # SushiDrop
 
 By: William Tran and Adrian Cerejo
-Made in C# using Visual Studio 2017 without using Unity. To run, double-click on "SushiDrop.exe" under SushiDrop/bin/Debug.
+Made in C# using Visual Studio 2017 without the use of Unity.
 
 Summary
 -----------
