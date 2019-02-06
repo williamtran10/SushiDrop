@@ -10,7 +10,7 @@ A sushi-themed match-3 game similar to Candy Crush or Bejeweled.
 Features:
 -----------
 - Two time limits: 3 minutes and 10 minutes
-- Animations for: swapping tiles, deleting tiles, and dropping columns
+- Animations for: swapping tiles, disappearing tiles, and dropping columns
 - Hints
 - Points system
 - Combo system that increases the points mulitplier
