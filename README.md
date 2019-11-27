@@ -17,3 +17,8 @@ Features:
 - Points system that increases based on the amount of tiles in a match
 - Combo system that increases the points mulitplier and checks for matches using the tiles that just dropped
 - Highscores stored in a .txt for top three scores of each time limit which can be cleared
+
+To-do:
+-----------
+- Add a hardcoded test case with the potential for a very high combo for showcasing purposes
+- Generalize code for more customizability (ex. add more rows, columns, change size)
