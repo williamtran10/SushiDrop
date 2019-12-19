@@ -52,6 +52,9 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblLimit = new System.Windows.Forms.Label();
+            this.lblScoreDifference = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -143,9 +146,9 @@
             this.lblTimer.ForeColor = System.Drawing.Color.White;
             this.lblTimer.Location = new System.Drawing.Point(682, 111);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(62, 37);
+            this.lblTimer.Size = new System.Drawing.Size(161, 37);
             this.lblTimer.TabIndex = 1;
-            this.lblTimer.Text = "0:0";
+            this.lblTimer.Text = "00:00:000";
             // 
             // tmrAnimation
             // 
@@ -158,11 +161,12 @@
             this.lblScore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(15)))), ((int)(((byte)(4)))));
             this.lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.lblScore.ForeColor = System.Drawing.Color.White;
-            this.lblScore.Location = new System.Drawing.Point(682, 269);
+            this.lblScore.Location = new System.Drawing.Point(681, 305);
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(35, 37);
             this.lblScore.TabIndex = 2;
             this.lblScore.Text = "0";
+            this.lblScore.TextChanged += new System.EventHandler(this.LblScore_TextChanged);
             // 
             // lblComboHeading
             // 
@@ -194,7 +198,7 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(15)))), ((int)(((byte)(4)))));
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(684, 249);
+            this.label3.Location = new System.Drawing.Point(683, 285);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 20);
             this.label3.TabIndex = 5;
@@ -265,12 +269,51 @@
             this.pictureBox4.TabIndex = 11;
             this.pictureBox4.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(15)))), ((int)(((byte)(4)))));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(684, 148);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 20);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Limit:";
+            // 
+            // lblLimit
+            // 
+            this.lblLimit.AutoSize = true;
+            this.lblLimit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(15)))), ((int)(((byte)(4)))));
+            this.lblLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.lblLimit.ForeColor = System.Drawing.Color.White;
+            this.lblLimit.Location = new System.Drawing.Point(682, 168);
+            this.lblLimit.Name = "lblLimit";
+            this.lblLimit.Size = new System.Drawing.Size(161, 37);
+            this.lblLimit.TabIndex = 13;
+            this.lblLimit.Text = "00:00:000";
+            // 
+            // lblScoreDifference
+            // 
+            this.lblScoreDifference.AutoSize = true;
+            this.lblScoreDifference.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(15)))), ((int)(((byte)(4)))));
+            this.lblScoreDifference.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreDifference.ForeColor = System.Drawing.Color.White;
+            this.lblScoreDifference.Location = new System.Drawing.Point(685, 342);
+            this.lblScoreDifference.Name = "lblScoreDifference";
+            this.lblScoreDifference.Size = new System.Drawing.Size(31, 24);
+            this.lblScoreDifference.TabIndex = 14;
+            this.lblScoreDifference.Text = "+0";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(3)))), ((int)(((byte)(3)))));
             this.ClientSize = new System.Drawing.Size(945, 634);
+            this.Controls.Add(this.lblScoreDifference);
+            this.Controls.Add(this.lblLimit);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblHintUsed);
             this.Controls.Add(this.lblCombo);
             this.Controls.Add(this.label3);
@@ -326,6 +369,9 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblLimit;
+        private System.Windows.Forms.Label lblScoreDifference;
     }
 }
 

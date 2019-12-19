@@ -1,0 +1,14 @@
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\bin\Debug\SushiDrop.exe.config
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\bin\Debug\SushiDrop.exe
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\bin\Debug\SushiDrop.pdb
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\obj\Debug\SushiDrop.csprojAssemblyReference.cache
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\obj\Debug\SushiDrop.frmLeaderboards.resources
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\obj\Debug\SushiDrop.frmMain.resources
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\obj\Debug\SushiDrop.frmOpeningScreen.resources
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\obj\Debug\SushiDrop.Properties.Resources.resources
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\obj\Debug\SushiDrop.Sprites.resources
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\obj\Debug\SushiDrop.csproj.GenerateResource.cache
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\obj\Debug\SushiDrop.csproj.CoreCompileInputs.cache
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\obj\Debug\SushiDrop.exe
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\obj\Debug\SushiDrop.pdb
+C:\Users\willi\OneDrive\Documents\Github\SushiDrop\SushiDrop\SushiDrop\obj\Debug\SushiDrop.frmOptions.resources

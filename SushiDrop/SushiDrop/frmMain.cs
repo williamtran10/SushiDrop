@@ -36,8 +36,9 @@ namespace SushiDrop
         bool HintUsed;
         bool GameIsOver = false;
         Point ClickOne, ClickTwo, Difference;
-        int Score, AnimationTickCounter, AnimationLength, ComboCounter;
+        int Score, AnimationTickCounter, AnimationLength, ComboCounter, PrevScore;
         Tile SelectedTileMarker;
+        bool DemoRunning = false;
 
         Stopwatch Stopwatch = new Stopwatch();
 
@@ -75,16 +76,80 @@ namespace SushiDrop
             for (int i = 0; i < 9; i++)
                 for (int j = 0; j < 9; j++)
                     this.Controls.Add(mBoard.Tiles[i, j]);
+
+            if (GameLength < 10) lblLimit.Text = String.Format("0{0}:00:000", GameLength);
+            else lblLimit.Text = String.Format("{0}:00:000", GameLength);
+        }
+
+        public frmMain()
+        {
+            DemoRunning = true;
+            InitializeComponent();
+
+            //initialize main arrays and relevant lists
+            IntArray = new int[9, 9] { {5,4,4,1,4,1,3,3,1},
+                                       {1,3,3,6,5,6,2,2,6},
+                                       {1,2,2,6,1,6,2,2,6},
+                                       {5,1,1,4,5,4,6,6,4},
+                                       {5,6,6,2,5,3,5,5,3},
+                                       {3,5,5,6,1,2,4,4,1},
+                                       {1,4,4,2,5,6,3,3,5},
+                                       {5,2,2,1,5,4,2,2,3},
+                                       {4,1,1,3,3,1,2,1,1},
+
+            };
+
+            mBoard = new Board(9, 9, TileSize, BoardOffset, IntArray);
+            PointLabelList = new List<Label>();
+            GlobalDeleteList = new List<Point>();
+
+            //Create highscore file
+            if (File.Exists(HighScoreFile) == false)
+                File.CreateText(HighScoreFile);
+
+            //set time limit
+            TimeLimit = 2;
+
+            //add each tile in mBoard to the form
+            for (int i = 0; i < 9; i++)
+                for (int j = 0; j < 9; j++)
+                    this.Controls.Add(mBoard.Tiles[i, j]);
+
+            lblLimit.Text = "02:00:000";
+            mnuGameReset.Enabled = false;
         }
 
         private void frmMain_Shown(object sender, EventArgs e)
         {
             //include reset here instead of in contructor so that no match is possible, the board will show first before showing the end game messagebox
-            Reset();
+            if (!DemoRunning) Reset();
+            else
+            {
+                Score = 0;
+                lblScore.Text = "0";
+                ComboCounter = 0;
+                lblComboHeading.Text = "Combo (Point Multiplier):";
+                lblCombo.Text = "0 (0x)";
+                lblHintUsed.Visible = false;
+                ClickOne = new Point(-1, -1); //set to (-1, -1) to show it has no valid value
+                ClickTwo = new Point(-1, -1);
+                PrevScore = 0;
+                lblScoreDifference.Text = "+0";
+
+                //restart recorded time
+                Stopwatch.Reset();
+                Stopwatch.Start();
+                tmrStopwatch.Enabled = true;
+
+                //set new colors
+                mBoard.SetAllImages();
+            }
         }
 
         private void Reset()
         {
+            DemoRunning = false;
+
             //clear entire IntArray
             Array.Clear(IntArray, 0, IntArray.Length);
 
@@ -115,6 +180,8 @@ namespace SushiDrop
             lblHintUsed.Visible = false;
             ClickOne = new Point(-1, -1); //set to (-1, -1) to show it has no valid value
             ClickTwo = new Point(-1, -1);
+            PrevScore = 0;
+            lblScoreDifference.Text = "+0";
 
             //dispose of any hintmarkers or selectedtile markers
             if (HintUsed)
@@ -373,7 +440,7 @@ namespace SushiDrop
                 mBoard.SetNewImage(ThisPoint.Y, ThisPoint.X);
             }
 
-            //make total score show onscreen
+            
             lblScore.Text = Score.ToString();
 
             ColumnsToDrop = new List<int>(GlobalDeleteList.Select(x => x.X).Distinct().ToList()); //keeps trach of which columns need to be dropped in dropping animation
@@ -471,6 +538,7 @@ namespace SushiDrop
                 //clear ClickOne and allow the user to click again
                 ClickOne = new Point(-1, -1);
                 GameState = State.Idle;
+                PrevScore = Score;
             }
         }
 
@@ -777,14 +845,14 @@ namespace SushiDrop
                         if (IntArray[Row, Col] == 0)
                             EmptySpaceCounter++;
                         else
-                            mBoard.Tiles[Row, Col].Top += EmptySpaceCounter;
+                            mBoard.Tiles[Row, Col].Top += 2 * EmptySpaceCounter;
                     }
                 }
 
                 AnimationTickCounter++;
 
                 //if the animation is done then stop timer and run postdrop code
-                if (AnimationTickCounter == AnimationLength)
+                if (AnimationTickCounter == AnimationLength / 2)
                 {
                     tmrAnimation.Stop();
                     PostDropColumns();
@@ -861,13 +929,13 @@ namespace SushiDrop
                     {
                         Score3Third = Score3Second; //gets moved down
 
-                        if (Score > int.Parse(Score3First)) 
+                        if (Score > int.Parse(Score3First))
                         {
                             //if score is best
                             Score3Second = Score3First;
                             Score3First = Score.ToString();
                         }
-                        else 
+                        else
                         {
                             //if score is better than second and third
                             Score3Second = Score.ToString();
@@ -879,7 +947,7 @@ namespace SushiDrop
                     UpdateScores = true; //update for all cases above
                 }
             }
-            else //if time is 10 minutes
+            else if (TimeLimit == 10)//if time is 10 minutes
             {
                 if (Score > int.Parse(Score10Third))
                 {
@@ -926,6 +994,11 @@ namespace SushiDrop
                 mnuGameReset.PerformClick();
             else if (e.KeyCode == Keys.H)
                 mnuGameHint.PerformClick();
+        }
+
+        private void LblScore_TextChanged(object sender, EventArgs e)
+        {
+            lblScoreDifference.Text = String.Format("+{0}", Score - PrevScore);
         }
 
         private void mnuGameHint_Click(object sender, EventArgs e)

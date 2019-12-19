@@ -19,10 +19,7 @@ namespace SushiDrop
         {
             //makes a new game window based on the time limit chosen
             frmMain NewWindow;
-            if (rad3Min.Checked)
-                NewWindow = new frmMain(3);
-            else
-                NewWindow = new frmMain(10);
+            NewWindow = new frmMain(3);
                 
             //make this form invisible while the new window opens, make it visible again when new window closes
             this.Visible = false;
@@ -54,6 +51,15 @@ namespace SushiDrop
                            "\nCombos: \nWhen boxes have settled after dropping, if another match is found then the combo counter will increase. Each increase in the combo counter will multiply the score value of all subsequent matches by 2. Therefore, the combo increases the score value exponentially. The combo counter resets after no match is found.\n" +
                            "\nPoint System: \nEach match is worth more based on how many sushis are in it. A match of 3 has a base point value 30 each, a match of 4 has a base point value of 40 each, and so on." +
                            "\n\n Other Controls:\n H - Hint (Combo Multiplier will be reduced to 0.5x for that turn) \n R - Reset Board (All progress will be lost)");
+        }
+
+        private void LblGameOptions_Click(object sender, EventArgs e)
+        {
+            frmOptions Options = new frmOptions();
+            this.Visible = false;
+            Options.ShowDialog();
+            Options.Dispose();
+            this.Visible = true;
         }
     }
 }
